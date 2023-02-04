@@ -1,15 +1,12 @@
 package com.automationexercise.tests;
 
 import com.automationexercise.utilities.WebDriverFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class RegisterUser {
+public class TC1_RegisterUser {
     WebDriver driver;
     @BeforeClass
     public void before(){
@@ -35,13 +32,13 @@ public class RegisterUser {
         String expectedText ="ENTER ACCOUNT INFORMATION";
         signUpMessage();
         driver.findElement(By.name("name")).sendKeys("test");
-        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("testfortestortest1@gmail.com");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("testfortestortest@gmail.com");
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
         String actualText = driver.findElement(By.cssSelector("div>.title.text-center")).getText();
         Assert.assertEquals(expectedText, actualText, "Text is not matching or not visible");
     }
     @Test
-    public void fillSignUpDetails(){
+    public void fillSignUpDetails() throws InterruptedException {
         EnterAccountInformation();
         //radio button mrs id= id_gender2 mr id= id_gender1
         String title="Mrs.";
@@ -94,17 +91,42 @@ public class RegisterUser {
         driver.findElement(By.id("mobile_number")).sendKeys("+123456789");
 
         //create account button
-      //  driver.findElement(By.xpath("//button[@data-qa='create-account']")).click();
-        executor.executeScript("arguments[0].click()", driver.findElement(By.xpath("(//input[@value='1'])[2]")));
+        //driver.findElement(By.xpath("//button[@data-qa='create-account']")).click();
+        //executor.executeScript("arguments[0].click()", driver.findElement(By.xpath("(//input[@value='1'])[2]")));
+        executor.executeScript("arguments[0].click()", driver.findElement(By.cssSelector("[data-qa='create-account']")));
 
+        //14. Verify that 'ACCOUNT CREATED!' is visible
+        Assert.assertEquals("ACCOUNT CREATED!", driver.findElement(By.cssSelector("[data-qa='account-created']")).getText() , "Text is not visible or differenr than expected!" );
+
+        driver.findElement(By.cssSelector(".btn.btn-primary")).click();
+
+
+
+/*      15. Click 'Continue' button
+        16. Verify that 'Logged in as username' is visible
+        17. Click 'Delete Account' button
+        18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button*/
+
+
+/*        Alert alert = driver.switchTo().alert();
+        alert.dismiss();*/
+        //executor.executeScript("arguments[0].click()", driver.findElement(By.xpath("//div/div/div/span[@dir='auto']")));
+        // driver.findElement(By.xpath("//div/div/div/span[@dir='auto']")).click();
+        //driver.findElement(By.id("dismiss-button")).click();
+
+
+        Assert.assertEquals("Logged in as test", driver.findElement(By.cssSelector(".fa.fa-user")).getText(), "Username looks different than you provided");
+
+        driver.findElement(By.cssSelector("[href='/delete_account']")).click();
+        Assert.assertEquals("Account Deleted!",driver.findElement(By.cssSelector("[data-qa='account-deleted']")).getText(),"text is different!");
+        driver.findElement(By.cssSelector("[data-qa='continue-button']")).click();
 
     }
 
 
-
     @AfterClass
     public void after(){
-        //driver.quit();
+        driver.quit();
     }
 }
 /*
@@ -125,6 +147,8 @@ Test Case 1: Register User
 11. Select checkbox 'Receive special offers from our partners!'
 12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
 13. Click 'Create Account button'
+
+
 14. Verify that 'ACCOUNT CREATED!' is visible
 15. Click 'Continue' button
 16. Verify that 'Logged in as username' is visible
