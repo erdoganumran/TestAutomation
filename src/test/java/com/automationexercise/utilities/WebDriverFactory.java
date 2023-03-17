@@ -2,6 +2,7 @@ package com.automationexercise.utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -20,7 +21,10 @@ public class WebDriverFactory {
                     firefoxdriver().setup();
                     break;
                 case "chrome":
-                    driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--remote-allow-origins=*");
+
+                    driver = new ChromeDriver(options);
                     chromedriver().setup();
                     break;
                 case "edge":
