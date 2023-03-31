@@ -32,7 +32,7 @@ public class TC1_RegisterUser {
         String expectedText ="ENTER ACCOUNT INFORMATION";
         signUpMessage();
         driver.findElement(By.name("name")).sendKeys("test");
-        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("testfortestortest@gmail.com");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("testfortestortest1234@gmail.com");
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
         String actualText = driver.findElement(By.cssSelector("div>.title.text-center")).getText();
         Assert.assertEquals(expectedText, actualText, "Text is not matching or not visible");
