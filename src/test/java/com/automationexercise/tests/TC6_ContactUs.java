@@ -1,6 +1,15 @@
 package com.automationexercise.tests;
 
-public class TC6_ContactUs {
+import com.automationexercise.pages.DashboardPage;
+import org.testng.annotations.Test;
+
+public class TC6_ContactUs extends TestBase{
+
+    @Test
+    public void contactUs(){
+        DashboardPage dashboardPage= new DashboardPage();
+        dashboardPage.contactUs.click();
+    }
 
 }
 /*

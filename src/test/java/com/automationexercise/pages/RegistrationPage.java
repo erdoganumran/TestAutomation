@@ -1,16 +1,24 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.utilities.BrowserUtils;
 import com.automationexercise.utilities.ConfigurationReader;
 import com.automationexercise.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import static java.lang.Integer.*;
 
 public class RegistrationPage {
-    @FindBy(id = "id_gender")
+    @FindBy(xpath = "(//h2[@class='title text-center'])[1]")
+    protected WebElement signUpPageText;
+    //css=div>.title.text-center
+    @FindBy(id = "id_gender1")
     protected WebElement genderMr;
     @FindBy(id = "id_gender2")
     protected WebElement genderMrs;
@@ -49,6 +57,11 @@ public class RegistrationPage {
     @FindBy(css = "[data-qa='create-account']")
     protected WebElement createAccountButton;
 
+    public RegistrationPage() {//constructor
+        PageFactory.initElements(Driver.get(), this);
+    }
+
+    @Test
     public void fillOutRegistrationForm(){
         genderMr.click();
         password.sendKeys(ConfigurationReader.get("password"));
@@ -57,10 +70,10 @@ public class RegistrationPage {
         dropdown.selectByVisibleText(ConfigurationReader.get("dayOfBirth"));
 
         dropdown= new Select(monthOfBirth);
-        dropdown.selectByVisibleText(ConfigurationReader.get("monthOfBirth"));
+        dropdown.selectByIndex(Integer.parseInt(ConfigurationReader.get("monthOfBirth")));
 
         dropdown= new Select(yearOfBirth);
-        dropdown.selectByVisibleText(ConfigurationReader.get("yearOfBirth"));
+        dropdown.selectByValue(ConfigurationReader.get("yearOfBirth"));
 
 
         //Sign up for our newsletter! checkbox
@@ -81,7 +94,7 @@ public class RegistrationPage {
 
 
         state.sendKeys(ConfigurationReader.get("state"));
-        state.sendKeys(ConfigurationReader.get("city"));
+        city.sendKeys(ConfigurationReader.get("city"));
         zipCode.sendKeys(ConfigurationReader.get("zipCode"));
         mobileNumber.sendKeys(ConfigurationReader.get("mobilePhone"));
 
@@ -89,4 +102,11 @@ public class RegistrationPage {
         executor.executeScript("arguments[0].click()", createAccountButton);
 
     }
+
+    @Test
+    public String getSignUpPageText(){
+        return signUpPageText.getText();
+       //return Driver.get().findElement(By.xpath("(//h2[@class='title text-center'])[1]")).getText();
+    }
+
 }

@@ -29,7 +29,7 @@ import java.time.Duration;
         public WebElement logout;
         @FindBy(css= "[href='/delete_account']")
         public WebElement deleteAccount;
-        @FindBy(xpath= "")
+        @FindBy(xpath= "//a[@href='/login']")
         public WebElement signUpLogin;
         @FindBy(xpath = "(//a[@href='/test_cases'])[1]")
         public WebElement testCases;

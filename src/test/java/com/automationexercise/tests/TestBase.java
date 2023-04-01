@@ -32,22 +32,12 @@ public class TestBase {
     @BeforeTest
     public void setUpTest(){
         report= new ExtentReports();
-
         //create a report path
         String projectPath=System.getProperty("user.dir");
-        //we will create a test-output folder and under of this folder 'report.html' file
         String path = projectPath + "/test-output/report.html";
-        //if you want to keep previous version of screenshots and report you must name ypu folder as;
-        // String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        //String path = projectPath + "/test-output/report" + date+ ".html";
 
-        //initialize the html reporter with the report path
         htmlReporter = new ExtentHtmlReporter(path);
-
-        //attach the html report to report object
         report.attachReporter(htmlReporter);
-
-        //title in report
         htmlReporter.config().setReportName("Automation Exercise Smoke Test");
 
         //set environment information
@@ -58,9 +48,9 @@ public class TestBase {
     @BeforeMethod
     public void setUp(){
         driver = Driver.get();
+        driver.get(ConfigurationReader.get("url"));
         actions= new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get(ConfigurationReader.get("url"));
     }
     @AfterMethod
     public void tearDown(ITestResult result) throws InterruptedException, IOException {
