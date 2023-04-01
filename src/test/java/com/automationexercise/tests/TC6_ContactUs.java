@@ -1,5 +1,6 @@
 package com.automationexercise.tests;
 
+import com.automationexercise.pages.ContactUsPage;
 import com.automationexercise.pages.DashboardPage;
 import org.testng.annotations.Test;
 
@@ -7,17 +8,22 @@ public class TC6_ContactUs extends TestBase{
 
     @Test
     public void contactUs(){
+       /* Test Case 6: Contact Us Form
+        1. Launch browser
+        2. Navigate to url 'http://automationexercise.com'
+        3. Verify that home page is visible successfully
+        4. Click on 'Contact Us' button*/
         DashboardPage dashboardPage= new DashboardPage();
         dashboardPage.contactUs.click();
+
+        ContactUsPage contactUsPage= new ContactUsPage();
+        contactUsPage.fillOutContactPage();
+
     }
 
 }
 /*
-Test Case 6: Contact Us Form
-1. Launch browser
-2. Navigate to url 'http://automationexercise.com'
-3. Verify that home page is visible successfully
-4. Click on 'Contact Us' button
+
 5. Verify 'GET IN TOUCH' is visible
 6. Enter name, email, subject and message
 7. Upload file

@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import static java.lang.Integer.*;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage{
     @FindBy(xpath = "(//h2[@class='title text-center'])[1]")
     protected WebElement signUpPageText;
     //css=div>.title.text-center
@@ -64,7 +64,7 @@ public class RegistrationPage {
     @Test
     public void fillOutRegistrationForm(){
         genderMr.click();
-        password.sendKeys(ConfigurationReader.get("password"));
+        password.sendKeys(ConfigurationReader.get("sign_up_password"));
 
         Select dropdown= new Select(dayOfBirth);
         dropdown.selectByVisibleText(ConfigurationReader.get("dayOfBirth"));
