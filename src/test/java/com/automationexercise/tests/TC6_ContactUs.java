@@ -2,6 +2,7 @@ package com.automationexercise.tests;
 
 import com.automationexercise.pages.ContactUsPage;
 import com.automationexercise.pages.DashboardPage;
+import com.automationexercise.utilities.BrowserUtils;
 import org.testng.annotations.Test;
 
 public class TC6_ContactUs extends TestBase{
@@ -17,6 +18,7 @@ public class TC6_ContactUs extends TestBase{
         dashboardPage.contactUs.click();
 
         ContactUsPage contactUsPage= new ContactUsPage();
+
         contactUsPage.fillOutContactPage();
 
     }

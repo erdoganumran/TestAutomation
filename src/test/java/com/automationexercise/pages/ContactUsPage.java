@@ -1,7 +1,9 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.utilities.BrowserUtils;
 import com.automationexercise.utilities.Driver;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -34,9 +36,10 @@ public class ContactUsPage extends BasePage{
         email.sendKeys("test@mail.com");
         subject.sendKeys("test subject");
         messageBox.sendKeys("test message");
-        submitButton.click();
+      //  submitButton.click();
+        BrowserUtils.clickWithJS(submitButton);
 
-        Alert alert= Driver.get().switchTo().alert();
+        Alert alert =Driver.get().switchTo().alert();
         alert.accept();
 
     }

@@ -1,6 +1,26 @@
 package com.automationexercise.tests;
 
-public class TC8_VerifyAllProductsAndDetails {
+import com.automationexercise.pages.DashboardPage;
+import com.automationexercise.utilities.BrowserUtils;
+import com.automationexercise.utilities.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v108.input.model.DragDataItem;
+import org.testng.annotations.Test;
+
+import java.util.List;
+
+public class TC8_VerifyAllProductsAndDetails extends TestBase{
+
+    @Test
+    public void productPage(){
+        DashboardPage dashboardPage= new DashboardPage();
+        dashboardPage.navigateToModule("Products");
+
+
+        driver.switchTo().defaultContent();
+    }
+
 }
 /*
 1. Launch browser

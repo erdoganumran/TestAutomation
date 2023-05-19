@@ -9,8 +9,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
     public class Driver {
@@ -51,6 +54,15 @@ import java.util.concurrent.TimeUnit;
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("--remote-allow-origins=*");
                         driver = new ChromeDriver(options);
+                        options.addExtensions(new File("\"C:\\Users\\erene\\AppData\\Local\\Temp\\scoped_dir17096_1685147834\\Default\\Extensions\\gighmmpiobklfepjocnamgkkbiglidom\""));
+                        options.addExtensions(new File("C:\\Users\\erene\\AppData\\Local\\Temp\\scoped_dir17096_1685147834\\Default\\Extensions.crx"));
+                //        options.addExtensions(new File("C:/Users/erene/AppData/Local/Temp/scoped_dir17096_1685147834/Default/Extensions/gighmmpiobklfepjocnamgkkbiglidom"));
+                      //  DesiredCapabilities capabilities = new DesiredCapabilities();
+                     //   capabilities.setCapability(ChromeOptions.CAPABILITY, options);*/
+                   //     driver = (WebDriver) capabilities;*/
+                     //  driver = new ChromeDriver(capabilities);
+
+
 
                         driver.manage().window().maximize();
                         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
